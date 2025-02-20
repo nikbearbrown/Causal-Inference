@@ -1,13 +1,9 @@
 # Causal Inference
 
-**Title:**  
-**Foundations of Causal Inference: From Hume to Modern Statistical Methods**  
+## What is Causal Inference
 
----
 
-## **Summary of Concepts and Equations**
-
-This text explores the evolution of causal inference, from David Hume’s philosophical principles to modern statistical methods, emphasizing randomized experiments, observational studies, and counterfactual reasoning. It distinguishes between different conceptions of causation and highlights the progression of causal inference methodologies in statistics.
+The following explores the evolution of causal inference, from David Hume’s philosophical principles to modern statistical methods, emphasizing randomized experiments, observational studies, and counterfactual reasoning. It distinguishes between different conceptions of causation and highlights the progression of causal inference methodologies in statistics.
 
 ### **1. Hume’s Conception of Causation**
 David Hume (1740) proposed three criteria for causation:
@@ -32,97 +28,89 @@ Example:
 
 ### **3. Deterministic vs. Probabilistic Causation**
 In scientific studies, causation is often **probabilistic** rather than deterministic. That is, a cause increases the probability of an effect occurring rather than guaranteeing it.
+Here’s the updated version with **GitHub-flavored markdown (GFM)** for math formatting:
 
-From **NOTES**:
+---
+
+## **3. Causation and Causal Effects**
+
 - **Causation is established through probability differences:**  
-  \[
-  Pr[Y=1 | A=1] \neq Pr[Y=1 | A=0]
-  \]
+  `Pr[Y=1 | A=1] ≠ Pr[Y=1 | A=0]`  
   This means that the probability of an outcome \( Y \) given treatment \( A \) differs from the probability of \( Y \) occurring without the treatment.
 
 - **Causal Effect:**  
-  \[
-  E[Y^{(a=1)}] - E[Y^{(a=0)}]
-  \]
+  `E[Y^(a=1)] - E[Y^(a=0)]`  
   This represents the difference in expected outcomes under treatment versus no treatment.
 
 - **Sharp causal null hypothesis:**  
-  \[
-  Y^{(a=1)} = Y^{(a=0)}
-  \]
+  `Y^(a=1) = Y^(a=0)`  
   This states that the treatment has no causal effect on any individual.
 
 ---
 
-### **4. Counterfactual Causality**
+## **4. Counterfactual Causality**
+
 A modern approach to causation involves **counterfactual reasoning**, where we ask:  
 *"What would have happened if the treatment had not been applied?"*
 
 - If John skids off the road while speeding, we consider:  
   *Would he have skidded if he had not been speeding?*  
 
-From **NOTES**:
+From **NOTES**:  
 - **Counterfactual outcome notation:**  
-  \[
-  Pr[Y^{(a=1)} = 1] \neq Pr[Y^{(a=0)} = 1]
-  \]
+  `Pr[Y^(a=1) = 1] ≠ Pr[Y^(a=0) = 1]`  
   If these probabilities differ, then treatment \( A \) affects outcome \( Y \), indicating causation.
 
 ---
 
-### **5. Observational Studies vs. Randomized Experiments**
+## **5. Observational Studies vs. Randomized Experiments**
+
 - **Randomized Experiments:** The treatment is assigned randomly, eliminating confounders and allowing causal conclusions.
 - **Observational Studies:** Treatment is not randomly assigned, so confounders may bias the results.
 
-From **NOTES**:
+From **NOTES**:  
 - **Exchangeability condition** (for valid causal inference in observational studies):  
-  \[
-  Pr[Y^a = 1 | A=1] = Pr[Y^a = 1 | A=0]
-  \]
+  `Pr[Y^a = 1 | A=1] = Pr[Y^a = 1 | A=0]`  
   This means the treated and untreated groups must be comparable in terms of potential outcomes.
 
 - **Standardization and Inverse Probability Weighting (IPW)** can adjust for confounding by reweighting observations to approximate a randomized study.
 
 ---
 
-### **6. Granger Causality and Correlation**
-- **Karl Pearson (1894):** Initially equated correlation with causation.
-- **George Yule (1895):** Introduced partial correlation to distinguish between spurious and causal relationships.
+## **6. Granger Causality and Correlation**
+
+- **Karl Pearson (1894):** Initially equated correlation with causation.  
+- **George Yule (1895):** Introduced partial correlation to distinguish between spurious and causal relationships.  
 - **Granger Causality:** A time-series method where \( X \) is said to “Granger-cause” \( Y \) if past values of \( X \) improve the prediction of \( Y \) beyond what past values of \( Y \) alone can do.
 
-From **NOTES**:
+From **NOTES**:  
 - **Confounding and Spurious Correlation:**  
-  If \( X \) and \( Y \) are correlated, a third variable \( Z \) might be causing both.
-  \[
-  Pr[Y | X, Z] = Pr[Y | Z]
-  \]
+  If \( X \) and \( Y \) are correlated, a third variable \( Z \) might be causing both.  
+  `Pr[Y | X, Z] = Pr[Y | Z]`  
   This suggests that controlling for \( Z \) removes the association between \( X \) and \( Y \), implying no direct causation.
 
 - **Example of Spurious Causality:**  
-  - Greek economist X. Shin found a correlation between economic activity and sunspots using Granger causality, demonstrating the risks of relying solely on correlation.
+  Greek economist X. Shin found a correlation between economic activity and sunspots using Granger causality, demonstrating the risks of relying solely on correlation.
 
 ---
 
-### **7. Potential Outcomes and Rubin’s Framework**
-Donald Rubin (1970s) reintroduced the **potential outcomes framework**, which formalizes causal inference as:
-\[
-E[Y^{(a=1)}] - E[Y^{(a=0)}]
-\]
+## **7. Potential Outcomes and Rubin’s Framework**
+
+Donald Rubin (1970s) reintroduced the **potential outcomes framework**, which formalizes causal inference as:  
+`E[Y^(a=1)] - E[Y^(a=0)]`  
 This measures the **average treatment effect (ATE)**.
 
-From **NOTES**:
+From **NOTES**:  
 - **Causal Risk Ratio:**  
-  \[
-  \frac{Pr[Y^{(a=1)} = 1]}{Pr[Y^{(a=0)} = 1]}
-  \]
+  `Pr[Y^(a=1) = 1] / Pr[Y^(a=0) = 1]`  
   This compares the probability of the outcome under treatment versus no treatment.
 
-- **Identifiability Conditions for Causal Inference:**
-  1. **Consistency:** The observed outcome matches the counterfactual.
-  2. **Exchangeability:** The treatment groups must be comparable.
+- **Identifiability Conditions for Causal Inference:**  
+  1. **Consistency:** The observed outcome matches the counterfactual.  
+  2. **Exchangeability:** The treatment groups must be comparable.  
   3. **Positivity:** Each individual has a nonzero probability of receiving either treatment.
 
----
+
 
 ### **8. Differences Between Observational and Experimental Approaches**
 - **Observational studies ask:** *What are the causes of an effect?*  
