@@ -2,8 +2,8 @@
 
 ## What is Causal Inference
 
+The following explores the evolution of causal inference, from David Hume’s philosophical principles to modern statistical methods, emphasizing randomized experiments, observational studies, and counterfactual reasoning. It distinguishes between different conceptions of causation and highlights the progression of causal inference methodologies in statistics. Throughout, we will focus on practical examples in **marketing** and **medicine**, with a special emphasis on **COVID-19** case studies to illustrate real-world applications of these methods.
 
-The following explores the evolution of causal inference, from David Hume’s philosophical principles to modern statistical methods, emphasizing randomized experiments, observational studies, and counterfactual reasoning. It distinguishes between different conceptions of causation and highlights the progression of causal inference methodologies in statistics.
 
 ### **1. Hume’s Conception of Causation**
 David Hume (1740) proposed three criteria for causation:
@@ -47,6 +47,176 @@ Here’s the updated version with **GitHub-flavored markdown (GFM)** for math fo
   This states that the treatment has no causal effect on any individual.
 
 ---
+## **4. Association**
+
+
+This is about understanding the **relationship between two things**:  
+👉 Does changing **A** affect the chances of **Y** happening?
+
+In simpler words, imagine you're asking:  
+> *"If I change something (like sending an ad or giving a medicine), does it change the result (like buying a product or getting healthy)?"*
+
+---
+
+## **What do A and Y mean?**
+
+- **A:** Something you can change (a condition or choice)  
+  - Example: Sending an ad (marketing) or giving a vaccine (medicine)  
+  - \( A = 1 \) means *yes* (ad was sent / vaccine was given)  
+  - \( A = 0 \) means *no* (no ad / no vaccine given)  
+
+- **Y:** The outcome (what happens after)  
+  - Example: Whether someone buys a product (marketing) or gets sick (medicine)  
+  - \( Y = 1 \) means *yes* (they bought the product / got sick)  
+  - \( Y = 0 \) means *no* (they didn’t buy / didn’t get sick)  
+
+---
+
+## **What is association?**
+
+Two things are **associated** if knowing one gives you information about the other.
+
+- **Marketing Example:**  
+  👉 If people who see an ad (A) are more likely to buy a product (Y), then seeing the ad and buying are associated.
+
+- **Medicine Example (COVID-19):**  
+  👉 If people who get the COVID-19 vaccine (A) are less likely to get sick (Y), then getting vaccinated and getting sick are associated.
+
+---
+
+## **What does the math say?**
+
+### **1. Association exists if:**  
+
+\[
+Pr(Y=1 \mid A=1) \neq Pr(Y=1 \mid A=0)
+\]
+
+🔍 This means:  
+- The chance of **Y** happening when **A** happens is *not* the same as when **A** doesn’t happen.  
+
+➡️ **If they are different:** A affects Y (there is an association)  
+➡️ **If they are the same:** No association  
+
+---
+
+## **How do we show no association?**
+
+There are **three ways** to check if **A** and **Y** are unrelated (no association):
+
+---
+
+### **1. Using subtraction (difference of probabilities):**  
+
+\[
+Pr(Y=1 \mid A=1) - Pr(Y=1 \mid A=0) = 0
+\]
+
+✅ No association if the difference is **0**.  
+
+**Marketing Example:**  
+- Chance of buying after seeing an ad: 0.4  
+- Chance of buying without seeing an ad: 0.4  
+
+\[
+0.4 - 0.4 = 0 \quad \checkmark \quad (\text{No association})
+\]
+
+---
+
+**COVID-19 Example (Medicine):**  
+- Chance of getting sick with the vaccine: 0.1  
+- Chance of getting sick without the vaccine: 0.3  
+
+\[
+0.1 - 0.3 = -0.2 \quad \neq 0 \quad (\text{Association exists})
+\]
+
+➡️ Vaccination reduces the chance of getting sick.
+
+---
+
+### **2. Using division (risk ratio):**  
+
+\[
+\frac{Pr(Y=1 \mid A=1)}{Pr(Y=1 \mid A=0)} = 1
+\]
+
+✅ No association if the ratio is **1**.  
+
+**Marketing Example:**  
+- With ad: 0.4  
+- Without ad: 0.4  
+
+\[
+\frac{0.4}{0.4} = 1 \quad \checkmark \quad (\text{No association})
+\]
+
+---
+
+**COVID-19 Example (Medicine):**  
+- With vaccine: 0.1  
+- Without vaccine: 0.3  
+
+\[
+\frac{0.1}{0.3} = 0.33 \quad \neq 1 \quad (\text{Association exists})
+\]
+
+➡️ The vaccine reduces the risk of getting sick.
+
+---
+
+### **3. Using odds (odds ratio):**  
+
+First, what are **odds**?  
+\[
+\text{Odds} = \frac{\text{Chance of success}}{\text{Chance of failure}}
+\]
+
+No association if:  
+
+\[
+\frac{Pr(Y=1 \mid A=1)/Pr(Y=0 \mid A=1)}{Pr(Y=1 \mid A=0)/Pr(Y=0 \mid A=0)} = 1
+\]
+
+---
+
+**Marketing Example:**  
+- With ad: 40% buy, 60% don’t → Odds = \( \frac{0.4}{0.6} = 0.67 \)  
+- Without ad: 40% buy, 60% don’t → Odds = \( \frac{0.4}{0.6} = 0.67 \)  
+
+\[
+\frac{0.67}{0.67} = 1 \quad \checkmark \quad (\text{No association})
+\]
+
+---
+
+**COVID-19 Example (Medicine):**  
+- With vaccine: 10% sick, 90% healthy → Odds = \( \frac{0.1}{0.9} = 0.11 \)  
+- Without vaccine: 30% sick, 70% healthy → Odds = \( \frac{0.3}{0.7} = 0.43 \)  
+
+\[
+\frac{0.11}{0.43} = 0.26 \quad \neq 1 \quad (\text{Association exists})
+\]
+
+➡️ The vaccine lowers the odds of getting sick.
+
+---
+
+## **Bottom line:**
+
+👉 If changing **A** (like showing an ad or giving a vaccine) **changes the chances** of **Y** (buying or getting sick), **there is an association**.  
+
+👉 If the chances **stay the same**, there’s **no association** — that’s what the math checks!  
+
+---
+
+## **Why does this matter?**
+
+- In **marketing**, understanding association helps companies know if ads actually increase sales.  
+- In **medicine** (like during **COVID-19**), it helps figure out if vaccines or treatments work.  
+
+Knowing these associations helps people make smarter decisions!
 
 ## **4. Counterfactual Causality**
 
